@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure Litoral — Restaurant Sa Ràpita, Mallorca</title>
+<meta name="description" content="Pure Litoral, cuina mediterrània amb vistes directes a la mar a Sa Ràpita, Mallorca. Obert cada dia de 10:00 a 22:00.">
+<meta property="og:title" content="Pure Litoral — Restaurant Sa Ràpita, Mallorca">
+<meta property="og:image" content="./fotos-restaurante/restaurante-1.jpg">
+<link rel="icon" href="./logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── VARIABLES ─────────────────────────────────────────── */
+:root {
+  --blue:       #6196EA;
+  --blue-deep:  #162A4A;
+  --blue-mid:   #1F3D6B;
+  --blue-light: #ADC8F5;
+  --gold:       #EAB561;
+  --gold-dk:    #C8923A;
+  --cream:      #F5F0E8;
+  --cream-dk:   #E8E0D0;
+  --dark:       #110E0B;
+  --stone:      #7A6850;
+  --text-dark:  #1C1916;
+  --text-mid:   #4A4036;
+}
+
+/* ── RESET ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── GRAIN OVERLAY ─────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── LOGO BADGE (solves white-bg logos) ────────────────── */
+.logo-badge {
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-badge img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── SCROLL ANIMATIONS ─────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(.22,.68,0,1.2), transform 0.85s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal.up { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.12s; }
+.reveal.d2 { transition-delay: 0.24s; }
+.reveal.d3 { transition-delay: 0.36s; }
+.reveal.d4 { transition-delay: 0.48s; }
+
+/* ── LABEL ─────────────────────────────────────────────── */
+.eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 14px;
+}
+.eyebrow::before {
+  content: ''; display: block;
+  width: 36px; height: 1px; background: currentColor; opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  NAVBAR                                                 */
+/* ═══════════════════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 52px;
+  transition: background 0.45s ease, padding 0.45s ease, backdrop-filter 0.45s ease;
+}
+#nav.solid {
+  background: var(--blue-deep);
+  padding: 14px 52px;
+  box-shadow: 0 2px 40px rgba(0,0,0,0.35);
+}
+
+.nav-brand { display: flex; align-items: center; gap: 13px; }
+.nav-brand .logo-badge {
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(234,181,97,0.5);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.nav-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #fff;
+}
+
+.nav-links { display: flex; gap: 38px; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.25s;
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(234,181,97,0.45);
+  padding: 9px 22px; border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+.nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-burger span {
+  display: block; width: 26px; height: 2px;
+  background: #fff; border-radius: 2px; transition: all 0.3s;
+}
+.nav-burger.x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.x span:nth-child(2) { opacity: 0; }
+.nav-burger.x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile overlay */
+#mob-menu {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: var(--blue-deep);
+  flex-direction: column; align-items: center; justify-content: center; gap: 44px;
+}
+#mob-menu.open { display: flex; }
+#mob-menu a {
+  font-family: 'Playfair Display', serif; font-size: 2.4rem;
+  color: var(--cream); font-weight: 400; letter-spacing: 0.04em;
+  transition: color 0.25s;
+}
+#mob-menu a:hover { color: var(--gold); }
+#mob-menu .mob-tel {
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em;
+  color: var(--gold); text-transform: uppercase; margin-top: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  HERO                                                   */
+/* ═══════════════════════════════════════════════════════ */
+#hero {
+  position: relative; width: 100%; height: 100vh; min-height: 640px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  background: #0A1520;
+}
+
+#hero-vid {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0; filter: brightness(0.65) saturate(1.1);
+}
+.hero-grad {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to right, rgba(22,42,74,0.55) 0%, transparent 60%),
+    linear-gradient(to top, rgba(11,14,18,0.7) 0%, transparent 50%);
+}
+
+/* Diagonal blue accent bar */
+.hero-bar {
+  position: absolute; left: 0; top: 0; bottom: 0; z-index: 2;
+  width: 7px;
+  background: linear-gradient(to bottom, var(--blue) 0%, var(--blue-deep) 100%);
+}
+
+.hero-body {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 0; padding: 0 24px;
+}
+
+/* Badge */
+.hero-badge {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.97);
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 10px rgba(234,181,97,0.12), 0 20px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+  margin-bottom: 32px;
+  animation: badgeIn 1.4s cubic-bezier(.22,.68,0,1.1) both;
+}
+.hero-badge img { width: 100%; height: 100%; object-fit: cover; }
+
+@keyframes badgeIn {
+  from { opacity: 0; transform: scale(0.75) translateY(-20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hero-kicker {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--blue-light);
+  margin-bottom: 18px;
+  animation: textIn 1.4s ease 0.3s both;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4.5rem, 11vw, 9.5rem);
+  font-weight: 900; line-height: 0.92;
+  color: #fff; letter-spacing: -0.01em;
+  animation: textIn 1.4s ease 0.45s both;
+}
+.hero-title span {
+  display: block; color: var(--gold);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  letter-spacing: 0.04em; line-height: 1.1;
+  margin-top: 6px;
+}
+@keyframes textIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-rule {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  margin: 32px auto;
+  animation: textIn 1.4s ease 0.7s both;
+}
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-style: italic; font-weight: 300;
+  color: rgba(255,255,255,0.8); letter-spacing: 0.04em;
+  animation: textIn 1.4s ease 0.85s both;
+}
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  margin-top: 36px;
+  animation: textIn 1.4s ease 1.05s both;
+}
+.btn-primary {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--dark);
+  background: var(--gold); padding: 15px 34px; border-radius: 2px;
+  transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--gold-dk); color: #fff; }
+.btn-ghost {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.45); padding: 15px 34px; border-radius: 2px;
+  transition: all 0.3s;
+}
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+.hero-scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  z-index: 3; text-align: center;
+  animation: textIn 1.6s ease 1.5s both;
+}
+.hero-scroll-hint p {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 10px;
+}
+.scroll-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); margin: 0 auto;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%       { transform: translateY(8px); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  BLUE INTRO BAND                                        */
+/* ═══════════════════════════════════════════════════════ */
+#intro-band {
+  background: var(--blue);
+  padding: 0;
+  overflow: hidden;
+}
+.intro-inner {
+  display: flex; align-items: stretch;
+  min-height: 420px;
+}
+.intro-text-col {
+  flex: 0 0 55%; padding: 80px 72px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.intro-text-col::after {
+  content: 'MALLORCA';
+  position: absolute; right: -40px; top: 50%; transform: translateY(-50%) rotate(90deg);
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem; font-weight: 900;
+  color: rgba(255,255,255,0.06);
+  white-space: nowrap; letter-spacing: 0.08em;
+  pointer-events: none;
+}
+.intro-text-col .eyebrow { color: rgba(255,255,255,0.6); margin-bottom: 22px; }
+.intro-text-col h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 700; line-height: 1.2; color: #fff;
+  margin-bottom: 24px;
+}
+.intro-text-col h2 em { font-style: italic; color: rgba(255,255,255,0.75); }
+.intro-text-col p {
+  font-size: 1rem; line-height: 1.85; font-weight: 300;
+  color: rgba(255,255,255,0.82); max-width: 520px;
+  margin-bottom: 16px;
+}
+.intro-coords {
+  margin-top: 28px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.intro-img-col {
+  flex: 0 0 45%; position: relative; overflow: hidden;
+}
+.intro-img-col img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.85) saturate(1.1);
+  mix-blend-mode: luminosity;
+  opacity: 0.55;
+}
+.intro-img-col::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--blue), transparent 60%);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  FEATURES ROW                                           */
+/* ═══════════════════════════════════════════════════════ */
+.features-row {
+  background: var(--cream);
+  padding: 60px 52px;
+  border-bottom: 1px solid var(--cream-dk);
+}
+.features-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.feat {
+  padding: 32px 40px;
+  border-right: 1px solid rgba(122,104,80,0.15);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.feat:last-child { border-right: none; }
+.feat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 900; line-height: 1;
+  color: var(--blue); opacity: 0.18;
+}
+.feat h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--blue-deep); margin-top: -8px;
+}
+.feat p { font-size: 0.85rem; line-height: 1.7; color: var(--stone); font-weight: 300; }
+
+/* ═══════════════════════════════════════════════════════ */
+/*  LA CARTA                                               */
+/* ═══════════════════════════════════════════════════════ */
+#carta {
+  background: var(--blue-deep);
+  padding: 110px 0; position: relative; overflow: hidden;
+}
+#carta::before {
+  content: '';
+  position: absolute; bottom: -100px; left: -100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(97,150,234,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+#carta::after {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(234,181,97,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.carta-wrap { max-width: 1240px; margin: 0 auto; padding: 0 52px; }
+
+.carta-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; gap: 40px; }
+.carta-head-left .eyebrow { color: var(--blue-light); margin-bottom: 16px; }
+.carta-head-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 700; color: var(--cream);
+  line-height: 1.1;
+}
+.carta-head-right {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.1rem; font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  max-width: 280px; text-align: right;
+  flex-shrink: 0;
+}
+
+/* Tabs */
+.tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 56px; }
+.tab-btn {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  padding: 15px 30px; cursor: pointer; border: none;
+  background: none; font-family: 'Outfit', sans-serif;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: all 0.3s;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.7); }
+.tab-btn.on { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* Food photo strip */
+.food-strip {
+  display: flex; gap: 5px;
+  margin-bottom: 60px; overflow: hidden;
+  border-radius: 3px; height: 200px;
+}
+.food-strip img {
+  flex: 1; min-width: 0; width: 0;
+  height: 200px; object-fit: cover;
+  filter: brightness(0.7) saturate(1.1);
+  transition: flex 0.5s ease, filter 0.4s;
+  cursor: default;
+}
+.food-strip img:hover { flex: 2; filter: brightness(0.9) saturate(1.15); }
+
+/* Tab panels — elegant menu list */
+.tab-panel { display: none; }
+.tab-panel.on { display: block; animation: panIn 0.35s ease; }
+@keyframes panIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+.menu-list { max-width: 840px; margin: 0 auto; }
+.menu-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px; padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  align-items: baseline;
+}
+.menu-row:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+.menu-row h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--cream); letter-spacing: 0.01em;
+}
+.menu-row p {
+  font-size: 0.84rem; line-height: 1.65;
+  color: rgba(255,255,255,0.38); font-weight: 300;
+  text-align: right;
+}
+@media (max-width: 640px) {
+  .menu-row { grid-template-columns: 1fr; gap: 6px; }
+  .menu-row p { text-align: left; }
+  .food-strip { height: 140px; }
+  .food-strip img { height: 140px; }
+}
+
+.carta-foot {
+  margin-top: 52px; text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.05rem;
+  color: rgba(255,255,255,0.3);
+}
+.carta-foot a { color: var(--blue-light); font-style: normal; font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════ */
+/*  GALERIA                                                */
+/* ═══════════════════════════════════════════════════════ */
+#galeria { background: var(--cream); padding: 110px 0; }
+.gal-wrap { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+.gal-head { text-align: center; margin-bottom: 64px; }
+.gal-head .eyebrow { color: var(--stone); justify-content: center; margin-bottom: 16px; }
+.gal-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 700;
+  color: var(--blue-deep); margin-bottom: 12px;
+}
+.gal-head p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.15rem; color: var(--stone);
+}
+
+/* Staggered grid */
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 80px;
+  gap: 12px;
+}
+.gal-item { overflow: hidden; cursor: pointer; position: relative; border-radius: 3px; }
+.gal-item:nth-child(1) { grid-column: span 7; grid-row: span 5; }
+.gal-item:nth-child(2) { grid-column: span 5; grid-row: span 3; }
+.gal-item:nth-child(3) { grid-column: span 5; grid-row: span 2; }
+.gal-item:nth-child(4) { grid-column: span 4; grid-row: span 3; }
+.gal-item:nth-child(5) { grid-column: span 4; grid-row: span 3; }
+.gal-item:nth-child(6) { grid-column: span 4; grid-row: span 3; }
+.gal-item:nth-child(7) { grid-column: span 6; grid-row: span 3; }
+.gal-item:nth-child(8) { grid-column: span 6; grid-row: span 3; }
+
+.gal-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s cubic-bezier(.25,.46,.45,.94), filter 0.4s;
+  filter: saturate(1.05) brightness(0.95);
+}
+.gal-item:hover img { transform: scale(1.08); filter: saturate(1.15) brightness(1.02); }
+
+/* Blue hover overlay */
+.gal-item::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(22,42,74,0) 0%, rgba(97,150,234,0.35) 100%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.gal-item:hover::before { opacity: 1; }
+
+.gal-caption {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  padding: 30px 18px 16px;
+  background: linear-gradient(to top, rgba(22,42,74,0.85), transparent);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.gal-item:hover .gal-caption { opacity: 1; transform: none; }
+
+/* ─── LIGHTBOX ─────────────────────────────────────────── */
+#lightbox {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(5,10,18,0.96); backdrop-filter: blur(12px);
+  align-items: center; justify-content: center;
+}
+#lightbox.open { display: flex; }
+#lb-img { max-width: 88vw; max-height: 86vh; object-fit: contain; border-radius: 2px; }
+#lb-close {
+  position: absolute; top: 24px; right: 32px;
+  color: rgba(255,255,255,0.6); font-size: 2.2rem;
+  cursor: pointer; line-height: 1; font-family: 'Outfit', sans-serif; font-weight: 300;
+  transition: color 0.2s;
+}
+#lb-close:hover { color: var(--gold); }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(97,150,234,0.15); border: 1px solid rgba(97,150,234,0.35);
+  color: #fff; font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.25s;
+}
+.lb-btn:hover { background: rgba(97,150,234,0.4); }
+#lb-prev { left: 20px; }
+#lb-next { right: 20px; }
+#lb-cap {
+  position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 0.95rem; color: rgba(255,255,255,0.45); white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  QUOTE — BLUE BOLD SECTION                              */
+/* ═══════════════════════════════════════════════════════ */
+#quote-section {
+  background: var(--blue);
+  padding: 120px 52px;
+  position: relative; overflow: hidden;
+}
+#quote-section::before {
+  content: '"';
+  position: absolute; top: -60px; left: 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 28rem; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.07); pointer-events: none;
+  user-select: none;
+}
+.quote-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.quote-inner blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  font-weight: 400; font-style: italic;
+  color: #fff; line-height: 1.55; letter-spacing: 0.01em;
+}
+.quote-line {
+  width: 60px; height: 2px;
+  background: rgba(255,255,255,0.3);
+  margin: 40px auto;
+}
+.quote-attr {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  SOBRE NOSALTRES (moved after gallery)                  */
+/* ═══════════════════════════════════════════════════════ */
+#sobre {
+  background: var(--cream); padding: 110px 0;
+  position: relative; overflow: hidden;
+}
+#sobre::before {
+  content: '45';
+  position: absolute; right: 5%; bottom: -20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 22rem; font-weight: 900; line-height: 1;
+  color: rgba(97,150,234,0.05); pointer-events: none;
+}
+.sobre-wrap {
+  max-width: 1240px; margin: 0 auto; padding: 0 52px;
+  display: grid; grid-template-columns: 1fr 460px; gap: 100px; align-items: center;
+}
+.sobre-left .eyebrow { color: var(--blue); margin-bottom: 20px; }
+.sobre-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 3.8vw, 3.5rem); font-weight: 700;
+  color: var(--blue-deep); line-height: 1.15; margin-bottom: 28px;
+}
+.sobre-left h2 em { font-style: italic; color: var(--blue); }
+.sobre-left p {
+  font-size: 1rem; line-height: 1.9; font-weight: 300;
+  color: var(--text-mid); margin-bottom: 18px;
+}
+.sobre-left p strong { color: var(--blue-deep); font-weight: 600; }
+.sobre-loc {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 20px; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--stone); border-top: 1px solid var(--cream-dk); padding-top: 22px;
+}
+.sobre-img-wrap { position: relative; }
+.sobre-img-wrap::before {
+  content: ''; position: absolute;
+  top: -18px; right: -18px; bottom: 18px; left: 18px;
+  border: 2px solid rgba(97,150,234,0.25); border-radius: 3px;
+  pointer-events: none;
+}
+.sobre-img-wrap img {
+  width: 100%; height: 580px; object-fit: cover; border-radius: 3px;
+  filter: brightness(0.97) saturate(1.05);
+  box-shadow: 24px 24px 80px rgba(22,42,74,0.2);
+}
+
+/* Small accent tag on image */
+.img-tag {
+  position: absolute; bottom: 28px; left: -24px;
+  background: var(--blue); color: #fff;
+  padding: 14px 22px; border-radius: 2px;
+  box-shadow: 0 8px 32px rgba(22,42,74,0.35);
+}
+.img-tag strong {
+  display: block; font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 3px;
+}
+.img-tag span { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; }
+
+/* ═══════════════════════════════════════════════════════ */
+/*  RESERVES                                               */
+/* ═══════════════════════════════════════════════════════ */
+#reserves {
+  background: var(--cream);
+  padding: 110px 0;
+  position: relative; overflow: hidden;
+}
+#reserves::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(97,150,234,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(234,181,97,0.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+.reserves-wrap {
+  max-width: 1060px; margin: 0 auto; padding: 0 52px;
+}
+.reserves-head { text-align: center; margin-bottom: 60px; }
+.reserves-head .eyebrow { justify-content: center; color: var(--blue); margin-bottom: 16px; }
+.reserves-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 700;
+  color: var(--blue-deep); margin-bottom: 14px; line-height: 1.1;
+}
+.reserves-head p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.15rem;
+  color: var(--stone); max-width: 480px; margin: 0 auto;
+}
+
+/* Card container */
+.reserves-card {
+  background: var(--blue-deep);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(22,42,74,0.25);
+  display: grid; grid-template-columns: 1fr 1.6fr;
+}
+
+.reserves-side {
+  position: relative; overflow: hidden; min-height: 520px;
+}
+.reserves-side img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.55) saturate(1.1);
+}
+.reserves-side-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(22,42,74,0.6) 0%, rgba(97,150,234,0.25) 100%);
+}
+.reserves-side-content {
+  position: relative; z-index: 2;
+  padding: 52px 44px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  height: 100%;
+}
+.reserves-side-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 700;
+  color: #fff; line-height: 1.2; margin-bottom: 16px;
+}
+.reserves-side-content h3 em { font-style: italic; color: var(--gold); }
+.reserves-side-content p {
+  font-size: 0.9rem; line-height: 1.75; font-weight: 300;
+  color: rgba(255,255,255,0.7); margin-bottom: 28px;
+}
+.reserves-tel {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(234,181,97,0.35);
+  padding: 12px 20px; border-radius: 2px;
+  transition: all 0.3s; width: fit-content;
+}
+.reserves-tel:hover { background: var(--gold); color: var(--dark); }
+
+.reserves-form-col {
+  padding: 52px 52px;
+}
+.reserves-form-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 8px;
+}
+.reserves-form-col .form-sub {
+  font-size: 0.82rem; color: rgba(255,255,255,0.35);
+  margin-bottom: 36px; font-weight: 300;
+}
+
+.rf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rf-grid .rf-full { grid-column: 1 / -1; }
+
+.rf-group { display: flex; flex-direction: column; gap: 7px; }
+.rf-group label {
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--blue-light);
+}
+.rf-group input,
+.rf-group select,
+.rf-group textarea {
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(97,150,234,0.22);
+  border-radius: 2px; color: #fff;
+  font-family: 'Outfit', sans-serif; font-size: 0.92rem;
+  transition: border-color 0.25s; resize: none;
+  appearance: none; -webkit-appearance: none;
+}
+.rf-group input::placeholder,
+.rf-group textarea::placeholder { color: rgba(255,255,255,0.22); }
+.rf-group input:focus,
+.rf-group select:focus,
+.rf-group textarea:focus { outline: none; border-color: var(--blue); background: rgba(97,150,234,0.08); }
+.rf-group select option { background: var(--blue-deep); color: #fff; }
+.rf-group textarea { height: 90px; }
+
+.rf-submit {
+  margin-top: 24px; width: 100%;
+  padding: 16px; border: none; border-radius: 2px;
+  background: var(--gold); color: var(--dark);
+  font-family: 'Outfit', sans-serif; font-size: 0.78rem;
+  font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s;
+}
+.rf-submit:hover { background: var(--gold-dk); color: #fff; }
+
+.reserves-note {
+  text-align: center; margin-top: 32px;
+  font-size: 0.8rem; color: var(--stone); font-weight: 300;
+}
+.reserves-note a { color: var(--blue); }
+
+@media (max-width: 900px) {
+  .reserves-card { grid-template-columns: 1fr; }
+  .reserves-side { min-height: 280px; }
+  .reserves-form-col { padding: 40px 32px; }
+  .rf-grid { grid-template-columns: 1fr; }
+  .rf-grid .rf-full { grid-column: 1; }
+}
+@media (max-width: 600px) {
+  .reserves-wrap { padding: 0 20px; }
+  .reserves-form-col { padding: 32px 20px; }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  CONTACTE                                               */
+/* ═══════════════════════════════════════════════════════ */
+#contacte {
+  background: var(--blue-deep); padding: 110px 0;
+}
+.cont-wrap {
+  max-width: 1240px; margin: 0 auto; padding: 0 52px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+}
+.cont-info .eyebrow { color: var(--blue-light); margin-bottom: 20px; }
+.cont-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem); font-weight: 700;
+  color: var(--cream); margin-bottom: 44px; line-height: 1.15;
+}
+.ci-item {
+  display: flex; align-items: flex-start; gap: 18px; margin-bottom: 28px;
+}
+.ci-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--blue); flex-shrink: 0; margin-top: 8px;
+}
+.ci-txt strong {
+  display: block; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--blue-light); margin-bottom: 5px;
+}
+.ci-txt p, .ci-txt a {
+  font-size: 0.98rem; color: rgba(255,255,255,0.72); line-height: 1.7;
+}
+.ci-txt a:hover { color: var(--gold); }
+
+.hours-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px;
+  font-size: 0.88rem; color: rgba(255,255,255,0.6);
+}
+.hours-grid .closed { color: var(--stone); font-style: italic; }
+
+/* Form */
+.cont-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 32px;
+}
+.fg { margin-bottom: 18px; }
+.fg label {
+  display: block; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blue-light); margin-bottom: 8px;
+}
+.fg input, .fg textarea {
+  width: 100%; padding: 13px 16px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(97,150,234,0.25);
+  border-radius: 2px; color: #fff; font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem; transition: border-color 0.25s; resize: none;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,0.25); }
+.fg input:focus, .fg textarea:focus { outline: none; border-color: var(--blue); }
+.fg textarea { height: 118px; }
+.btn-send {
+  width: 100%; padding: 15px;
+  background: var(--blue); color: #fff;
+  font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  border: none; border-radius: 2px; cursor: pointer; transition: all 0.3s;
+}
+.btn-send:hover { background: var(--blue-mid); }
+
+.cont-map-row {
+  max-width: 1240px; margin: 72px auto 0; padding: 0 52px;
+}
+.cont-map-row iframe {
+  width: 100%; height: 340px; border: none; display: block;
+  border-radius: 3px; filter: saturate(0.6) brightness(0.8);
+  opacity: 0.85;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  FOOTER                                                 */
+/* ═══════════════════════════════════════════════════════ */
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.45);
+  padding: 80px 52px 0;
+}
+.foot-top {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 80px;
+  padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.foot-brand { display: flex; flex-direction: column; gap: 18px; }
+.foot-brand-head { display: flex; align-items: center; gap: 14px; }
+.foot-brand-head .logo-badge {
+  width: 52px; height: 52px;
+  border: 1.5px solid rgba(234,181,97,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.foot-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+.foot-desc { font-size: 0.88rem; line-height: 1.8; font-weight: 300; max-width: 280px; }
+.foot-desc em {
+  display: block; margin-top: 8px;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1rem; color: var(--gold); opacity: 0.75;
+}
+
+.foot-socials { display: flex; gap: 10px; margin-top: 8px; }
+.foot-soc {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(97,150,234,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); font-size: 0.75rem;
+  transition: all 0.25s;
+}
+.foot-soc:hover { border-color: var(--blue); color: var(--blue); }
+
+.foot-links h5, .foot-hours-col h5 {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--blue-light); margin-bottom: 22px;
+}
+.foot-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.foot-links a { font-size: 0.9rem; transition: color 0.25s; }
+.foot-links a:hover { color: var(--gold); }
+.foot-hours-col p { font-size: 0.88rem; line-height: 2; font-weight: 300; }
+.foot-hours-col .closed { color: var(--stone); font-style: italic; }
+
+.foot-bottom {
+  max-width: 1240px; margin: 0 auto;
+  padding: 20px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.72rem; color: rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(97,150,234,0.08);
+}
+/* blue accent line at top of footer */
+footer::before {
+  content: ''; display: block; height: 3px;
+  background: linear-gradient(to right, var(--blue-deep), var(--blue), var(--gold), var(--blue), var(--blue-deep));
+  margin-bottom: 80px; /* compensates for footer padding-top */
+  margin-top: -80px;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  RESPONSIVE                                             */
+/* ═══════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  #nav { padding: 18px 32px; }
+  #nav.solid { padding: 14px 32px; }
+  .intro-inner { flex-direction: column; }
+  .intro-text-col { flex: none; padding: 72px 40px; }
+  .intro-img-col { flex: none; height: 280px; }
+  .features-inner { grid-template-columns: repeat(2, 1fr); }
+  .feat:nth-child(2) { border-right: none; }
+  .sobre-wrap { grid-template-columns: 1fr; gap: 60px; padding: 0 40px; }
+  .sobre-img-wrap img { height: 420px; }
+  .cont-wrap { grid-template-columns: 1fr; gap: 60px; padding: 0 40px; }
+  .gal-wrap { padding: 0 24px; }
+  .foot-top { grid-template-columns: 1fr; gap: 44px; }
+  .carta-wrap { padding: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  #nav { padding: 16px 20px; }
+  #nav.solid { padding: 12px 20px; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  .hero-title { font-size: clamp(3.8rem, 14vw, 6rem); }
+  .hero-badge { width: 100px; height: 100px; }
+
+  .features-inner { grid-template-columns: 1fr; }
+  .feat { border-right: none; border-bottom: 1px solid rgba(122,104,80,0.15); }
+  .feat:last-child { border-bottom: none; }
+  .features-row { padding: 40px 20px; }
+
+  .carta-wrap { padding: 0 20px; }
+  .carta-head { flex-direction: column; align-items: flex-start; }
+  .carta-head-right { text-align: left; }
+  .tab-btn { padding: 12px 16px; font-size: 0.65rem; }
+  .tab-panel.on { grid-template-columns: 1fr; }
+
+  .gal-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .gal-item { grid-column: span 1 !important; grid-row: span 2 !important; }
+
+  #quote-section { padding: 80px 24px; }
+  #quote-section::before { font-size: 16rem; top: -40px; }
+
+  .sobre-wrap { padding: 0 20px; gap: 48px; }
+  .sobre-img-wrap img { height: 320px; }
+  .img-tag { left: 0; }
+
+  .cont-wrap { padding: 0 20px; }
+  .cont-map-row { padding: 0 20px; }
+
+  footer { padding: 60px 20px 0; }
+  footer::before { margin-bottom: 60px; margin-top: -60px; }
+  .foot-top { padding: 0 0 48px; }
+  .foot-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  .lb-btn { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ██ NAVBAR ██ -->
+<nav id="nav">
+  <a class="nav-brand" href="#hero">
+    <div class="logo-badge" style="width:40px;height:40px;border:1.5px solid rgba(234,181,97,0.5);">
+      <img src="./logo-alt/logo-alt.png" alt="Pure Litoral" width="40" height="40">
+    </div>
+    <span class="nav-wordmark">Pure Litoral</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#carta">La Carta</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#sobre">El Restaurant</a></li>
+    <li><a href="#contacte">Contacte</a></li>
+  </ul>
+
+  <a class="nav-cta" href="#reserves">Reservar Taula</a>
+
+  <button class="nav-burger" id="burger" aria-label="Menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mob-menu">
+  <a href="#carta">La Carta</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#sobre">El Restaurant</a>
+  <a href="#contacte">Contacte</a>
+  <a href="#reserves">Reservar Taula</a>
+  <a class="mob-tel" href="tel:871252792">871 252 792</a>
+</div>
+
+
+<!-- ██ HERO ██ -->
+<section id="hero">
+  <video id="hero-vid" muted playsinline preload="auto">
+    <source src="./vistas/vista.mp4" type="video/mp4">
+  </video>
+  <div class="hero-grad"></div>
+  <div class="hero-bar"></div>
+
+  <div class="hero-body">
+    <div class="hero-badge">
+      <img src="./logo-alt/logo-alt.png" alt="Pure Litoral" width="130" height="130">
+    </div>
+    <p class="hero-kicker">Sa Ràpita · Mallorca · Illes Balears</p>
+    <h1 class="hero-title">
+      PURE
+      <span>Litoral</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-tagline">On la mar és part del menú</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#carta">Veure la Carta</a>
+      <a class="btn-ghost" href="#contacte">Reservar Taula</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <p>Desplaça</p>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+
+<!-- ██ INTRO BAND (BLUE) ██ -->
+<section id="intro-band">
+  <div class="intro-inner">
+    <div class="intro-text-col">
+      <p class="eyebrow reveal">Litoral Restaurant-Cafè</p>
+      <h2 class="reveal d1">
+        La cuina de la mar,<br>
+        <em>amb les vistes que mereix</em>
+      </h2>
+      <p class="reveal d2">
+        Ubicat a l'Avinguda de Miramar de Sa Ràpita, el Pure Litoral s'ha convertit en el lloc de referència per a qui cerca cuina mediterrània autèntica davant la mar. La nostra terrassa, oberta directament a la platja, és el punt de trobada perfecte per gaudir dels millors sabors de Mallorca.
+      </p>
+      <p class="reveal d3">
+        Un servei molt ben valorat pels nostres clients i una situació immillorable: aquests són els dos pilars que sostenen la nostra proposta gastronòmica.
+      </p>
+      <p class="intro-coords reveal d4">39°22'N · 2°58'E · Sa Ràpita, Mallorca</p>
+    </div>
+    <div class="intro-img-col">
+      <img src="./fotos-restaurante/restaurante-2.jpg" alt="Terrassa de Pure Litoral davant la platja" loading="lazy">
+    </div>
+  </div>
+</section>
+
+
+<!-- ██ FEATURES ██ -->
+<div class="features-row">
+  <div class="features-inner">
+    <div class="feat reveal">
+      <div class="feat-num">01</div>
+      <h4>Vistes a la Mar</h4>
+      <p>Terrassa amb vistes directes a la platja de Sa Ràpita, al Migjorn de Mallorca</p>
+    </div>
+    <div class="feat reveal d1">
+      <div class="feat-num">02</div>
+      <h4>Cuina Mediterrània</h4>
+      <p>Cuina mediterrània elaborada amb dedicació.</p>
+    </div>
+    <div class="feat reveal d2">
+      <div class="feat-num">03</div>
+      <h4>Obert Cada Dia</h4>
+      <p>De dilluns a diumenge, de les 10:00 del matí fins a les 22:00 del vespre</p>
+    </div>
+    <div class="feat reveal d3">
+      <div class="feat-num">04</div>
+      <h4>Ambient Únic</h4>
+      <p>Interior elegant i terrassa exterior: un espai pensat per gaudir de cada moment</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ██ LA CARTA ██ -->
+<section id="carta">
+  <div class="carta-wrap">
+    <div class="carta-head">
+      <div class="carta-head-left">
+        <p class="eyebrow reveal">Gastronomia mediterrània</p>
+        <h2 class="reveal d1">La Nostra<br>Carta</h2>
+      </div>
+      <p class="carta-head-right reveal d2">
+        Cuina mediterrània elaborada amb dedicació.
+      </p>
+    </div>
+
+    <!-- Franja decorativa de fotos -->
+    <div class="food-strip reveal">
+      <img src="./fotos-menjar/menjar-1.jpg" alt="Cuina Pure Litoral" loading="lazy">
+      <img src="./fotos-menjar/menjar-2.jpg" alt="Cuina Pure Litoral" loading="lazy">
+      <img src="./fotos-menjar/menjar-3.jpg" alt="Cuina Pure Litoral" loading="lazy">
+      <img src="./fotos-menjar/menjar-4.jpg" alt="Cuina Pure Litoral" loading="lazy">
+      <img src="./fotos-menjar/menjar-5.jpg" alt="Cuina Pure Litoral" loading="lazy">
+      <img src="./fotos-menjar/menjar-6.jpg" alt="Cuina Pure Litoral" loading="lazy">
+    </div>
+
+    <div class="tabs reveal">
+      <button class="tab-btn on" data-tab="entrants">Entrants</button>
+      <button class="tab-btn" data-tab="plats">Plats Principals</button>
+      <button class="tab-btn" data-tab="postres">Postres</button>
+      <button class="tab-btn" data-tab="begudes">Begudes</button>
+    </div>
+
+    <!-- ENTRANTS -->
+    <div class="tab-panel on" id="tab-entrants">
+      <div class="menu-list">
+        <div class="menu-row"><h3>Croquetes de Bacallà</h3><p>Croquetes cremoses de bacallà amb all i patata, arrebossades i fregides a punt.</p></div>
+        <div class="menu-row"><h3>Amanida de la Casa</h3><p>Tomàtiga de ramallet, olives mallorquines i formatge de Maó curat.</p></div>
+        <div class="menu-row"><h3>Pa amb Oli Mallorquí</h3><p>Pa pagès amb tomàtiga de ramallet, oli d'oliva i sobrassada de porc negre.</p></div>
+        <div class="menu-row"><h3>Carpaccio de Mar</h3><p>Tall fi de peix de la costa amb citrus i emulsió de verd.</p></div>
+        <div class="menu-row"><h3>Gambetes Saltejades</h3><p>Gambetes fresques saltejades amb all i oli d'oliva verge extra.</p></div>
+      </div>
+    </div>
+
+    <!-- PLATS PRINCIPALS -->
+    <div class="tab-panel" id="tab-plats">
+      <div class="menu-list">
+        <div class="menu-row"><h3>Peix del Dia</h3><p>Peix fresc cuinat a la planxa amb herbes aromàtiques i llimona.</p></div>
+        <div class="menu-row"><h3>Arròs de Marisc</h3><p>Arròs caldós amb gambes, llagostins i cloïsses, cuit amb fumet de peix de roca.</p></div>
+        <div class="menu-row"><h3>Marisc de la Costa</h3><p>Selecció de marisc fresc de temporada, cuinat al moment.</p></div>
+        <div class="menu-row"><h3>Llom a la Pedra</h3><p>Llom de porc negre mallorquí cuinat a la pedra amb herbes del camp.</p></div>
+        <div class="menu-row"><h3>Pasta Fresca de la Casa</h3><p>Pasta fresca feta a mà cada dia, amb salsa de tomàtiga i alfàbiga.</p></div>
+      </div>
+    </div>
+
+    <!-- POSTRES -->
+    <div class="tab-panel" id="tab-postres">
+      <div class="menu-list">
+        <div class="menu-row"><h3>Gató d'Ametlla</h3><p>Dolç tradicional mallorquí d'ametlla, servit amb gelat de vainilla.</p></div>
+        <div class="menu-row"><h3>Cremadets de Vainilla</h3><p>Flam cremós de vainilla amb caramel cremat i pell de llimona.</p></div>
+        <div class="menu-row"><h3>Gelat Artesà</h3><p>Gelats artesans elaborats cada dia amb fruites de temporada.</p></div>
+        <div class="menu-row"><h3>Fruites de Temporada</h3><p>Selecció de fruites fresques del mercat, servides naturals.</p></div>
+      </div>
+    </div>
+
+    <!-- BEGUDES -->
+    <div class="tab-panel" id="tab-begudes">
+      <div class="menu-list">
+        <div class="menu-row"><h3>Vi de la Casa</h3><p>Blanc, negre o rosat. Vins de les D.O. Binissalem i Pla i Llevant.</p></div>
+        <div class="menu-row"><h3>Sangria de la Casa</h3><p>Sangria artesana amb vi negre, taronja, llimona i espècies.</p></div>
+        <div class="menu-row"><h3>Cafès i Infusions</h3><p>Cafè, tallat, capuccino i infusions d'herbes aromàtiques.</p></div>
+        <div class="menu-row"><h3>Aigues i Refrescos</h3><p>Aigues minerals, sucs naturals i begudes sense alcohol.</p></div>
+      </div>
+    </div>
+
+    <p class="carta-foot reveal">Consultau el menú del dia · <a href="tel:871252792">871 252 792</a> · Avisau-nos d'al·lèrgies o intoleràncies</p>
+  </div>
+</section>
+
+
+<!-- ██ GALERIA ██ -->
+<section id="galeria">
+  <div class="gal-wrap">
+    <div class="gal-head">
+      <p class="eyebrow reveal">Fotografia</p>
+      <h2 class="reveal d1">El Nostre Espai</h2>
+      <p class="reveal d2">Un ambient on la mar i l'elegància es troben</p>
+    </div>
+
+    <div class="gal-grid reveal">
+      <div class="gal-item" data-i="0" data-caption="Posta de sol davant la mar" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-1.jpg" alt="Taula parada amb posta de sol" loading="lazy">
+        <div class="gal-caption">Posta de sol davant la mar</div>
+      </div>
+      <div class="gal-item" data-i="1" data-caption="Terrassa exterior" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-2.jpg" alt="Terrassa exterior davant la platja" loading="lazy">
+        <div class="gal-caption">Terrassa exterior davant la platja</div>
+      </div>
+      <div class="gal-item" data-i="2" data-caption="Interior amb barra" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-3.jpg" alt="Interior modern" loading="lazy">
+        <div class="gal-caption">Interior modern amb barra</div>
+      </div>
+      <div class="gal-item" data-i="3" data-caption="Sala interior elegant" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-5.jpg" alt="Sala interior" loading="lazy">
+        <div class="gal-caption">Sala interior elegant</div>
+      </div>
+      <div class="gal-item" data-i="4" data-caption="Sala diàfana i lluminosa" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-6.jpg" alt="Sala lluminosa" loading="lazy">
+        <div class="gal-caption">Sala diàfana i lluminosa</div>
+      </div>
+      <div class="gal-item" data-i="5" data-caption="Capvespre a la terrassa" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-7.jpg" alt="Terrassa al capvespre" loading="lazy">
+        <div class="gal-caption">Capvespre a la terrassa</div>
+      </div>
+      <div class="gal-item" data-i="6" data-caption="Zona lounge" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-8.jpg" alt="Zona lounge" loading="lazy">
+        <div class="gal-caption">Zona lounge i barra</div>
+      </div>
+      <div class="gal-item" data-i="7" data-caption="Litoral Restaurant-Café Sa Ràpita" tabindex="0" role="button">
+        <img src="./fotos-restaurante/restaurante-9.jpg" alt="Senyalística exterior" loading="lazy">
+        <div class="gal-caption">Litoral Restaurant-Café Sa Ràpita</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <span id="lb-close">×</span>
+  <button class="lb-btn" id="lb-prev">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn" id="lb-next">&#8594;</button>
+  <p id="lb-cap"></p>
+</div>
+
+
+<!-- ██ QUOTE — BLUE SECTION ██ -->
+<section id="quote-section">
+  <div class="quote-inner reveal">
+    <blockquote>
+      "Gaudir de la millor cuina mediterrània amb el so de la mar de fons — aquesta és l'essència de Pure Litoral."
+    </blockquote>
+    <div class="quote-line"></div>
+    <p class="quote-attr">Pure Litoral · Sa Ràpita · Mallorca</p>
+  </div>
+</section>
+
+
+<!-- ██ RESERVES ██ -->
+<section id="reserves">
+  <div class="reserves-wrap">
+    <div class="reserves-head">
+      <p class="eyebrow reveal">Disponibilitat</p>
+      <h2 class="reveal d1">Reservar Taula</h2>
+      <p class="reveal d2">Assegureu el vostre lloc davant la mar. Us confirmarem la reserva per telèfon o correu.</p>
+    </div>
+
+    <div class="reserves-card reveal d1">
+      <!-- Left: image + info -->
+      <div class="reserves-side">
+        <img src="./fotos-restaurante/restaurante-7.jpg" alt="Terrassa Pure Litoral al capvespre" loading="lazy">
+        <div class="reserves-side-overlay"></div>
+        <div class="reserves-side-content">
+          <h3>Una taula <em>davant la mar</em></h3>
+          <p>
+            La nostra terrassa amb vistes directes a la platja de Sa Ràpita és l'espai perfecte per a qualsevol celebració. Sopars romàntics, dinars en família o celebracions especials — veniu i deixeu que la mar sigui el vostre teló de fons.
+          </p>
+          <p style="font-size:0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 18px; line-height:1.8;">
+            Obertura: Dilluns – Diumenge, 10:00 – 22:00<br>
+            Durada recomanada: 2 hores per visita
+          </p>
+          <a class="reserves-tel" href="tel:871252792">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            871 252 792
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="reserves-form-col">
+        <h3>Sol·licitar Reserva</h3>
+        <p class="form-sub">Ompliu el formulari i us contactarem per confirmar disponibilitat.</p>
+
+        <form onsubmit="submitReserva(event)">
+          <div class="rf-grid">
+            <div class="rf-group">
+              <label for="r-nom">Nom i cognoms *</label>
+              <input type="text" id="r-nom" placeholder="Joan Mas Fiol" required>
+            </div>
+            <div class="rf-group">
+              <label for="r-tel">Telèfon *</label>
+              <input type="tel" id="r-tel" placeholder="600 000 000" required>
+            </div>
+            <div class="rf-group">
+              <label for="r-email">Correu electrònic</label>
+              <input type="email" id="r-email" placeholder="joan@exemple.com">
+            </div>
+            <div class="rf-group">
+              <label for="r-persones">Nombre de comensals *</label>
+              <select id="r-persones" required>
+                <option value="" disabled selected>Seleccionau…</option>
+                <option value="1">1 persona</option>
+                <option value="2">2 persones</option>
+                <option value="3">3 persones</option>
+                <option value="4">4 persones</option>
+                <option value="5">5 persones</option>
+                <option value="6">6 persones</option>
+                <option value="7">7 persones</option>
+                <option value="8">8 persones</option>
+                <option value="9+">Més de 8 (grup)</option>
+              </select>
+            </div>
+            <div class="rf-group">
+              <label for="r-data">Data *</label>
+              <input type="date" id="r-data" required>
+            </div>
+            <div class="rf-group">
+              <label for="r-hora">Hora *</label>
+              <select id="r-hora" required>
+                <option value="" disabled selected>Seleccionau…</option>
+                <option>10:00</option><option>10:30</option>
+                <option>11:00</option><option>11:30</option>
+                <option>12:00</option><option>12:30</option>
+                <option>13:00</option><option>13:30</option>
+                <option>14:00</option><option>14:30</option>
+                <option>15:00</option><option>15:30</option>
+                <option>16:00</option><option>16:30</option>
+                <option>17:00</option><option>17:30</option>
+                <option>18:00</option><option>18:30</option>
+                <option>19:00</option><option>19:30</option>
+                <option>20:00</option><option>20:30</option>
+                <option>21:00</option><option>21:30</option>
+              </select>
+            </div>
+            <div class="rf-group rf-full">
+              <label for="r-zona">Preferència de zona</label>
+              <select id="r-zona">
+                <option value="" disabled selected>Seleccionau (si en teniu)</option>
+                <option value="terrassa">Terrassa exterior (vistes a la mar)</option>
+                <option value="interior">Sala interior</option>
+                <option value="indif">Indiferent</option>
+              </select>
+            </div>
+            <div class="rf-group rf-full">
+              <label for="r-notes">Notes especials</label>
+              <textarea id="r-notes" placeholder="Al·lèrgies, aniversaris, cadires de nadons, accessibilitat…"></textarea>
+            </div>
+          </div>
+
+          <button class="rf-submit" type="submit" id="rfBtn">Enviar Sol·licitud de Reserva</button>
+        </form>
+      </div>
+    </div>
+
+    <p class="reserves-note reveal">
+      Les reserves es confirmen per telèfon o correu en un termini de 24 h. Per a grups de més de 8 persones, truqueu directament al <a href="tel:871252792">871 252 792</a>.
+    </p>
+  </div>
+</section>
+
+
+<!-- ██ SOBRE NOSALTRES ██ -->
+<section id="sobre">
+  <div class="sobre-wrap">
+    <div class="sobre-left">
+      <p class="eyebrow reveal">El nostre restaurant</p>
+      <h2 class="reveal d1">Cuina <em>mediterrània</em><br>amb ànima mallorquina</h2>
+      <p class="reveal d2">
+        Pure Litoral neix de l'amor per la cuina de la nostra terra i de la fascinació per la mar que banya Sa Ràpita. <strong>Cada plat és una finestra oberta al Mediterrani</strong>, elaborat amb productes frescos de proximitat i amb la tècnica d'un equip que estima la gastronomia balear.
+      </p>
+      <p class="reveal d3">
+        La terrassa amb vistes directes a la platja és el cor del restaurant: un espai on el temps s'atura, les converses s'allarguen i cada moment es converteix en un record. Benvinguts a la nostra taula.
+      </p>
+      <div class="sobre-loc reveal d4">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Av. de Miramar, 45 · Sa Ràpita, Mallorca
+      </div>
+    </div>
+
+    <div class="sobre-img-wrap reveal d2">
+      <img src="./fotos-restaurante/restaurante-1.jpg" alt="Pure Litoral — taula parada amb posta de sol" loading="lazy" width="460" height="580">
+      <div class="img-tag">
+        <strong>Des de</strong>
+        <span>Sa Ràpita</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ██ CONTACTE ██ -->
+<section id="contacte">
+  <div class="cont-wrap">
+    <div class="cont-info">
+      <p class="eyebrow reveal">On som</p>
+      <h2 class="reveal d1">Veniu a<br>visitar-nos</h2>
+
+      <div class="ci-item reveal d1">
+        <div class="ci-dot"></div>
+        <div class="ci-txt">
+          <strong>Adreça</strong>
+          <p>Av. de Miramar, 45<br>07639 Sa Ràpita, Mallorca<br>Illes Balears, Espanya</p>
+        </div>
+      </div>
+      <div class="ci-item reveal d2">
+        <div class="ci-dot"></div>
+        <div class="ci-txt">
+          <strong>Telèfon</strong>
+          <a href="tel:871252792">871 252 792</a>
+        </div>
+      </div>
+      <div class="ci-item reveal d3">
+        <div class="ci-dot"></div>
+        <div class="ci-txt">
+          <strong>Horari</strong>
+          <div class="hours-grid">
+            <span>Dilluns</span><span>10:00 – 22:00</span>
+            <span>Dimarts</span><span>10:00 – 22:00</span>
+            <span>Dimecres</span><span>10:00 – 22:00</span>
+            <span>Dijous</span><span>10:00 – 22:00</span>
+            <span>Divendres</span><span>10:00 – 22:00</span>
+            <span>Dissabte</span><span>10:00 – 22:00</span>
+            <span>Diumenge</span><span>10:00 – 22:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="ci-item reveal d4">
+        <div class="ci-dot"></div>
+        <div class="ci-txt">
+          <strong>Google Maps</strong>
+          <a href="https://maps.app.goo.gl/PUhChT8q9KL8AAPh8" target="_blank" rel="noopener">
+            Com arribar-hi →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cont-form reveal d2">
+      <h3>Escriviu-nos</h3>
+      <form onsubmit="sendForm(event)">
+        <div class="fg">
+          <label for="nom">El vostre nom</label>
+          <input type="text" id="nom" placeholder="Joan Mas" required>
+        </div>
+        <div class="fg">
+          <label for="email">Correu electrònic</label>
+          <input type="email" id="email" placeholder="joan@exemple.com" required>
+        </div>
+        <div class="fg">
+          <label for="msg">Missatge</label>
+          <textarea id="msg" placeholder="Escriviu el vostre missatge..." required></textarea>
+        </div>
+        <button class="btn-send" type="submit">Enviar missatge</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="cont-map-row reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3082.9452!2d2.9730!3d39.3480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1299db25b3d39a4d%3A0x37bde0e475f85e8b!2sAv.%20de%20Miramar%2C%2045%2C%2007639%20sa%20R%C3%A0pita%2C%20Illes%20Balears!5e0!3m2!1sca!2ses!4v1711280000000"
+      title="Pure Litoral — Sa Ràpita, Mallorca"
+      loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+
+<!-- ██ FOOTER ██ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-brand-head">
+        <div class="logo-badge" style="width:52px;height:52px;border:1.5px solid rgba(234,181,97,0.3);">
+          <img src="./logo-alt/logo-alt.png" alt="Pure Litoral" width="52" height="52" loading="lazy">
+        </div>
+        <span class="foot-name">Pure Litoral</span>
+      </div>
+      <p class="foot-desc">
+        Litoral Restaurant-Cafè Sa Ràpita. Cuina mediterrània amb vistes a la mar, al Migjorn de Mallorca.
+        <em>On la mar és part del menú.</em>
+      </p>
+      <div class="foot-socials">
+        <a class="foot-soc" href="#" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a class="foot-soc" href="#" aria-label="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a class="foot-soc" href="#" aria-label="TripAdvisor" style="font-size:0.6rem;font-weight:700;font-family:Outfit,sans-serif;">TA</a>
+      </div>
+    </div>
+
+    <div class="foot-links">
+      <h5>Navegació</h5>
+      <ul>
+        <li><a href="#carta">La Carta</a></li>
+        <li><a href="#reserves">Reserves</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#sobre">El Restaurant</a></li>
+        <li><a href="#contacte">Contacte</a></li>
+        <li><a href="tel:871252792">871 252 792</a></li>
+      </ul>
+    </div>
+
+    <div class="foot-hours-col">
+      <h5>Horari</h5>
+      <p>
+        Dilluns – Diumenge<br>
+        10:00 – 22:00
+      </p>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2026 Pure Litoral · Tots els drets reservats</span>
+    <span>Av. de Miramar, 45 · Sa Ràpita · Mallorca</span>
+  </div>
+</footer>
+
+
+<!-- ██ JAVASCRIPT ██ -->
+<script>
+(function(){
+  /* Navbar */
+  const nav = document.getElementById('nav');
+
+  /* Scroll-driven video */
+  const vid = document.getElementById('hero-vid');
+  const hero = document.getElementById('hero');
+  let vidReady = false;
+  vid.addEventListener('loadedmetadata', () => { vidReady = true; });
+  vid.load();
+
+  function scrubVideo() {
+    if (!vidReady || !vid.duration) return;
+    const heroH = hero.offsetHeight;
+    // Play through duration over 2x hero height of scroll for a slow, cinematic feel
+    const pct = Math.min(Math.max(window.scrollY / (heroH * 1.8), 0), 1);
+    vid.currentTime = vid.duration * pct;
+  }
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 50);
+    scrubVideo();
+  }, {passive: true});
+
+  /* Burger */
+  const burger = document.getElementById('burger');
+  const mob    = document.getElementById('mob-menu');
+  burger.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    burger.classList.toggle('x', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mob.classList.remove('open'); burger.classList.remove('x');
+    burger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }));
+
+  /* Scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* Tabs */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+      btn.classList.add('on');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('on');
+    });
+  });
+
+  /* Lightbox */
+  const items = Array.from(document.querySelectorAll('.gal-item'));
+  const lbData = items.map(el => ({
+    src: el.querySelector('img').src,
+    alt: el.querySelector('img').alt,
+    cap: el.dataset.caption || ''
+  }));
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbCap   = document.getElementById('lb-cap');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+  let cur = 0;
+
+  function openLb(i) {
+    cur = ((i % lbData.length) + lbData.length) % lbData.length;
+    lbImg.src = lbData[cur].src; lbImg.alt = lbData[cur].alt;
+    lbCap.textContent = lbData[cur].cap;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+
+  items.forEach((el, i) => {
+    el.addEventListener('click', () => openLb(i));
+    el.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') openLb(i); });
+  });
+  lbClose.addEventListener('click', closeLb);
+  lbPrev.addEventListener('click', () => openLb(cur - 1));
+  lbNext.addEventListener('click', () => openLb(cur + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key==='Escape') closeLb();
+    if (e.key==='ArrowLeft') openLb(cur-1);
+    if (e.key==='ArrowRight') openLb(cur+1);
+  });
+
+  /* Reservation form */
+  window.submitReserva = function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('rfBtn');
+    btn.textContent = 'Sol·licitud enviada ✓ Us contactarem aviat';
+    btn.style.background = '#2E7D5B';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Enviar Sol·licitud de Reserva';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 5000);
+  };
+
+  /* Set min date to today */
+  const dateInput = document.getElementById('r-data');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+  }
+
+  /* Contact Form */
+  window.sendForm = function(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = 'Missatge enviat ✓';
+    btn.style.background = '#2E7D5B';
+    setTimeout(() => {
+      btn.textContent = 'Enviar missatge';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3500);
+  };
+})();
+</script>
+</body>
+</html>
